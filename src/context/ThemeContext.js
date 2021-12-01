@@ -1,7 +1,6 @@
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 import { createContext, useEffect, useState } from "react";
-import { darkTheme } from "../theme/themes";
-import { lightTheme } from '../theme/themes';
+import { darkTheme, lightTheme } from "../theme/themes";
 
 /**
  * Contexto para gestionar el cambio de themes

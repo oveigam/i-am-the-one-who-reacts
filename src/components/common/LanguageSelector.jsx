@@ -6,6 +6,7 @@ const LanguageSelector = () => {
         <Select
             sx={{ height: 32, bgcolor: 'primary.light' }}
             value={i18n.language.split('-')[0]}
+            MenuProps={{ disableScrollLock: true }}
             onChange={e => i18n.changeLanguage(e.target.value)}
         >
             <MenuItem value="es" sx={{ justifyContent: 'center', alignItems: 'center', paddingY: 2 }} >

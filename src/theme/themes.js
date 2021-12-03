@@ -12,8 +12,8 @@ const lightThemeOptions = {
             main: BB_YELLOW,
         },
         background: {
-            default: '#f8fafc',
-            paper: '#f1f5f9',
+            default: '#f1f5f9',
+            paper: '#e2e8f0',
         },
         warning: {
             main: WARNING_COLOR,

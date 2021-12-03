@@ -1,3 +1,10 @@
 {
-    "knockknock": "Yo soy el tío que llama"
+    "knockknock": "Yo soy el tío que llama",
+    "status": "Estado",
+    "birthday": "Cumpleaños",
+    "occupations": "Ocupaciones",
+    "portrayed": "Interpretado por",
+    "appearance": "Aparece en las temporadas",
+    "backtocharacters": "Volver a personajes",
+    "refreshquote": "Actualizar frase"
 }

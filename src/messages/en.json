@@ -1,3 +1,10 @@
 {
-    "knockknock": "I Am The One Who Knocks"
+    "knockknock": "I Am The One Who Knocks",
+    "status": "Status",
+    "birthday": "Birthday",
+    "occupations": "Occupations",
+    "portrayed": "Portrayed by",
+    "appearance": "Appears on seasons",
+    "backtocharacters": "Back to characters",
+    "refreshquote": "Refresh quote"
 }

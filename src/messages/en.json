@@ -6,5 +6,10 @@
     "portrayed": "Portrayed by",
     "appearance": "Appears on seasons",
     "backtocharacters": "Back to characters",
-    "refreshquote": "Refresh quote"
+    "refreshquote": "Refresh quote",
+    "errors": {
+        "fetchAllCharacters": "There was an error fetching the list of characters",
+        "fetchCharacterDetail": "There was an error fetching the character details",
+        "quote": "There was an error fetching quotes from the character"
+    }
 }

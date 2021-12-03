@@ -5,9 +5,6 @@ import App from './App';
 import './index.css';
 
 axios.defaults.baseURL = 'https://breakingbadapi.com/api'
-axios.defaults.params = {
-  category: 'Breaking Bad'
-}
 
 ReactDOM.render(
   <React.StrictMode>

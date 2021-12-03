@@ -6,5 +6,10 @@
     "portrayed": "Interpretado por",
     "appearance": "Aparece en las temporadas",
     "backtocharacters": "Volver a personajes",
-    "refreshquote": "Actualizar frase"
+    "refreshquote": "Actualizar frase",
+    "errors": {
+        "fetchAllCharacters": "Error recuperando la lista de personajes",
+        "fetchCharacterDetail": "Error recuperando los detalles del personaje",
+        "quote": "Error recuperando frases del personaje"
+    }
 }

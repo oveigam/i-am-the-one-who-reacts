@@ -1,16 +1,12 @@
 import { Refresh } from "@mui/icons-material";
-import { IconButton, Skeleton, Stack, Typography } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRandomQuote } from "../../store/slices/characterSlice";
 
 const Quote = ({ characterName }) => {
     const dispatch = useDispatch()
 
-    const { quote, isLoadingQuote, isLoadingDetails } = useSelector(state => state.character)
-
-    if (isLoadingDetails) {
-        return <Skeleton height={200} />
-    }
+    const { quote, isLoadingQuote } = useSelector(state => state.character)
 
     if (!isLoadingQuote && !quote) {
         return null

@@ -78,9 +78,9 @@ const CharacterPage = () => {
 
                         {
                             isLoadingDetails ?
-                                <Skeleton height={100} />
+                                <Skeleton height={150} />
                                 :
-                                <Grid container spacing={{ xs: 2, lg: 0 }}  >
+                                <Grid container spacing={2} paddingBottom={2}  >
 
                                     <Grid item xs={12} lg={6} >
                                         <Stack spacing={2}>
@@ -110,30 +110,35 @@ const CharacterPage = () => {
                         <Divider />
                         {
                             isLoadingDetails ?
-                                <Skeleton height={100} />
+                                <Skeleton height={150} />
                                 :
-                                <>
-                                    <TextWithLabel label="portrayed" >
-                                        {character?.portrayed}
-                                    </TextWithLabel>
+                                <Grid container spacing={2} paddingBottom={2}  >
 
-                                    <Stack spacing={1}>
-                                        <Typography fontWeight="bold" >{t('appearance')}:</Typography>
-                                        <Grid container spacing={2}>
-                                            {
-                                                isLoadingDetails ?
-                                                    <Skeleton />
-                                                    :
-                                                    character?.appearance?.map((season) => (
-                                                        <Grid key={season} item >
-                                                            <Button disableElevation variant="contained" sx={{ fontWeight: 'bold' }} >{season}</Button>
-                                                        </Grid>
-                                                    ))
-                                            }
-                                        </Grid>
-                                    </Stack>
-                                </>
+                                    <Grid item xs={12}  >
+                                        <TextWithLabel label="portrayed" >
+                                            {character?.portrayed}
+                                        </TextWithLabel>
+                                    </Grid>
 
+                                    <Grid item xs={12} >
+                                        <Stack spacing={1}>
+                                            <Typography fontWeight="bold" >{t('appearance')}:</Typography>
+                                            <Grid container spacing={2}>
+                                                {
+                                                    isLoadingDetails ?
+                                                        <Skeleton />
+                                                        :
+                                                        character?.appearance?.map((season) => (
+                                                            <Grid key={season} item >
+                                                                <Button disableElevation variant="contained" sx={{ fontWeight: 'bold' }} >{season}</Button>
+                                                            </Grid>
+                                                        ))
+                                                }
+                                            </Grid>
+                                        </Stack>
+                                    </Grid>
+
+                                </Grid>
                         }
 
                         <Quote characterName={character?.name} />

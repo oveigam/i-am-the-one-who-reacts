@@ -1,9 +1,9 @@
-import { ArrowBack, Refresh } from "@mui/icons-material";
-import { Button, Divider, Grid, IconButton, Paper, Skeleton, Stack, Typography } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { Button, Divider, Grid, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useNavigationType } from "react-router-dom";
+import { useNavigate, useNavigationType, useParams } from "react-router-dom";
 import Quote from "../components/characters/Quote";
 import TextWithLabel from "../components/common/TextWithLabel";
 import TextWithSkeleton from "../components/common/TextWithSkeleton";

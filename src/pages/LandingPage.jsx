@@ -1,46 +1,33 @@
 
-import { CircularProgress, Grid } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CharacterCard from '../components/characters/CharacterCard';
-import { fetchAllCharacters } from '../store/slices/characterSlice';
+import CharacterList from '../components/characters/CharacterList';
+import CharacterSearchBar from '../components/characters/CharacterSearchBar';
+import LoadingPanel from '../components/common/LoadingPanel';
+import { fetchAllCharacters } from '../store/slices/characterListSlice';
 
 const LandingPage = () => {
     const dispatch = useDispatch()
 
-    const { characters, isLoadingCharacters } = useSelector(state => state.character)
+    const { filteredCharacters: characters, isLoadingCharacters } = useSelector(state => state.characterList)
 
     useEffect(() => {
         dispatch(fetchAllCharacters())
     }, [dispatch])
 
     return (
-        <Grid container spacing={2} >
+        <Stack flex={1} >
+            <Box marginBottom={2} width={{ xs: '100%', md: '80%', lg: '60%' }} >
+                <CharacterSearchBar />
+            </Box>
             {
                 (isLoadingCharacters && characters?.length === 0) ?
-                    <Grid item xs={12} sx={{
-                        bgcolor: 'rgba(15,23,42, 0.5)',
-                        width: '100%',
-                        height: '70vh',
-                        display: 'flex',
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}  >
-                        <CircularProgress />
-                    </Grid>
+                    <LoadingPanel />
                     :
-                    characters?.map(c => (
-                        <Grid key={c.char_id} item xs={12} sm={6} md={4} lg={3} >
-                            <CharacterCard
-                                id={c.char_id}
-                                name={c.name}
-                                nickname={c.nickname}
-                                img={c.img}
-                            />
-                        </Grid>
-                    ))
+                    <CharacterList />
             }
-        </Grid>
+        </Stack>
     );
 }
 

@@ -14,6 +14,7 @@ const lightThemeOptions = {
         background: {
             default: '#f1f5f9',
             paper: '#e2e8f0',
+            backdrop: 'rgba(226, 232, 240, .7)'
         },
         warning: {
             main: WARNING_COLOR,
@@ -38,6 +39,7 @@ const darkThemeOptions = {
         background: {
             default: '#0f172a',
             paper: '#1e293b',
+            backdrop: 'rgba(30, 41, 59, .7)'
         },
         text: {
             primary: '#f8fafc',

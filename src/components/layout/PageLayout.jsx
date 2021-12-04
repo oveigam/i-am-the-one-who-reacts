@@ -24,7 +24,7 @@ const PageLayout = ({ children }) => {
                 flexDirection: 'column'
             }} >
                 <Header />
-                <Container sx={{ paddingY: 1.5, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Container sx={{ paddingY: 1.5, flex: 1, display: 'flex' }}>
                     {children}
                 </Container>
             </Box>

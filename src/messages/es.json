@@ -7,6 +7,7 @@
     "appearance": "Aparece en las temporadas",
     "backtocharacters": "Volver a personajes",
     "refreshquote": "Actualizar frase",
+    "search": "Buscar",
     "errors": {
         "fetchAllCharacters": "Error recuperando la lista de personajes",
         "fetchCharacterDetail": "Error recuperando los detalles del personaje",

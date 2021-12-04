@@ -42,7 +42,6 @@ const CharacterPage = () => {
                         <Placeholder isLoading={isLoadingDetails}>
                             <Grid item xs={4} sx={{ display: { lg: 'none' } }} />
                             <Grid item xs={4} lg={12}>
-
                                 <img
                                     style={{ objectFit: 'cover', borderRadius: 4 }}
                                     src={character?.img}

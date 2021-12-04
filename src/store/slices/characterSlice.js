@@ -1,14 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchAllCharacters = createAsyncThunk(
-    'character/fetchAllCharacters',
-    async () => {
-        const { data } = await axios.get('characters', { params: { category: 'Breaking Bad' } })
-        return data
-    }
-)
-
 export const fetchCharacterDetail = createAsyncThunk(
     'character/fetchCharacterDetail',
     async (characterId, { dispatch }) => {
@@ -29,8 +21,6 @@ export const fetchRandomQuote = createAsyncThunk(
 const characterSlice = createSlice({
     name: 'character',
     initialState: {
-        characters: [],
-        isLoadingCharacters: false,
         isLoadingDetails: false,
         isLoadingQuote: false
     },
@@ -41,18 +31,6 @@ const characterSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchAllCharacters.pending]: (state) => {
-            state.isLoadingCharacters = true
-        },
-        [fetchAllCharacters.fulfilled]: (state, { payload: characters }) => {
-            state.characters = characters
-            state.isLoadingCharacters = false
-        },
-        [fetchAllCharacters.rejected]: (state) => {
-            state.error = 'apiErrors.fetchAllCharacters'
-            state.isLoadingCharacters = false
-        },
-
         [fetchCharacterDetail.pending]: (state) => {
             state.isLoadingDetails = true
         },

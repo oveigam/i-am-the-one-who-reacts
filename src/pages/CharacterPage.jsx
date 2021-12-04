@@ -32,7 +32,7 @@ const CharacterPage = () => {
             <Stack width="100%"  >
 
                 <Box marginBottom={2} >
-                    <Button color="secondary" startIcon={<ArrowBack />} onClick={() => navigate(navType === 'POP' ? '/' : -1)} >
+                    <Button startIcon={<ArrowBack />} onClick={() => navigate(navType === 'POP' ? '/' : -1)} >
                         {t('backtocharacters')}
                     </Button>
                 </Box>

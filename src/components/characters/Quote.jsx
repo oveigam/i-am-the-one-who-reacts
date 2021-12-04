@@ -34,7 +34,7 @@ const Quote = ({ characterName }) => {
                     color="text.secondary"
                     textAlign="center"
                     variant="h5"
-                    fontSize={{ xs: '1rem', lg: '1.5rem' }}
+                    fontSize={{ xs: '1rem', md: '1.3rem', lg: '1.5rem' }}
                 >
                     {quote && `“${quote}”`}
                 </Typography>

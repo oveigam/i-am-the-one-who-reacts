@@ -80,7 +80,7 @@ const CharacterPage = () => {
                             isLoadingDetails ?
                                 <Skeleton height={100} />
                                 :
-                                <Grid container spacing={2}  >
+                                <Grid container spacing={{ xs: 2, lg: 0 }}  >
 
                                     <Grid item xs={12} lg={6} >
                                         <Stack spacing={2}>

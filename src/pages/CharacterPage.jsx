@@ -1,13 +1,13 @@
 import { ArrowBack } from "@mui/icons-material";
-import { Button, Divider, Grid, Paper, Skeleton, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Paper, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useNavigationType, useParams } from "react-router-dom";
 import Quote from "../components/characters/Quote";
 import TextWithLabel from "../components/common/TextWithLabel";
-import TextWithSkeleton from "../components/common/TextWithSkeleton";
 import { clearCharacterDetail, fetchCharacterDetail } from "../store/slices/characterSlice";
+import Placeholder from './../components/common/Placeholder';
 
 const CharacterPage = () => {
     const { characterId } = useParams()
@@ -28,58 +28,54 @@ const CharacterPage = () => {
     }, [characterId, dispatch])
 
     return (
-        <Paper sx={{ padding: { xs: 1, lg: 4 }, width: '100%' }}>
-            <Grid container spacing={2} >
+        <Paper sx={{ padding: { xs: 1, lg: 4 }, display: 'flex', flex: 1 }} >
+            <Stack width="100%"  >
 
-                <Grid item xs={12} >
+                <Box marginBottom={2} >
                     <Button color="secondary" startIcon={<ArrowBack />} onClick={() => navigate(navType === 'POP' ? '/' : -1)} >
                         {t('backtocharacters')}
                     </Button>
-                </Grid>
+                </Box>
 
-                <Grid item xs={4} sx={{ display: { lg: 'none' } }} />
+                <Grid container spacing={2} flex={1} >
+                    <Grid container item xs={12} lg={5} >
+                        <Placeholder isLoading={isLoadingDetails}>
+                            <Grid item xs={4} sx={{ display: { lg: 'none' } }} />
+                            <Grid item xs={4} lg={12}>
 
-                <Grid item xs={4} display="flex" justifyContent="center" >
-                    {
-                        isLoadingDetails ?
-                            <Skeleton width="100%" />
-                            :
-                            <img
-                                style={{ objectFit: 'cover', borderRadius: 4 }}
-                                src={character?.img}
-                                width="100%"
-                                alt="character portrait"
-                            />
-                    }
-                </Grid>
+                                <img
+                                    style={{ objectFit: 'cover', borderRadius: 4 }}
+                                    src={character?.img}
+                                    width="100%"
+                                    height="100%"
+                                    alt="character portrait"
+                                />
+                            </Grid>
+                        </Placeholder>
+                    </Grid>
 
-                <Grid item container xs={12} lg={8} >
-                    <Stack width="100%" spacing={2} sx={{ paddingX: 4 }} >
+                    <Grid item xs={12} lg={7}>
+                        <Placeholder isLoading={isLoadingDetails} >
+                            <Stack spacing={2} sx={{ paddingX: 4 }} divider={<Divider />} >
 
-                        <TextWithSkeleton
-                            isLoading={isLoadingDetails}
-                            textAlign="center"
-                            variant="h2"
-                            fontSize={{ xs: '2rem', lg: '3.75rem' }}
-                        >
-                            {character?.name}
-                        </TextWithSkeleton>
+                                <Box>
+                                    <Typography
+                                        textAlign="center"
+                                        variant="h2"
+                                        fontSize={{ xs: '2rem', lg: '3.75rem' }}
+                                    >
+                                        {character?.name}
+                                    </Typography>
 
-                        <TextWithSkeleton
-                            isLoading={isLoadingDetails}
-                            textAlign="end"
-                            fontSize={{ xs: '1rem', lg: '1.3rem' }}
-                            variant="subtitle1"
-                        >
-                            A.K.A. <span style={{ fontStyle: 'italic' }}>{character?.nickname}</span>
-                        </TextWithSkeleton>
+                                    <Typography
+                                        textAlign="end"
+                                        fontSize={{ xs: '1rem', lg: '1.3rem' }}
+                                        variant="subtitle1"
+                                    >
+                                        A.K.A. <span style={{ fontStyle: 'italic' }}>{character?.nickname}</span>
+                                    </Typography>
+                                </Box>
 
-                        <Divider />
-
-                        {
-                            isLoadingDetails ?
-                                <Skeleton height={150} />
-                                :
                                 <Grid container spacing={2} paddingBottom={2}  >
 
                                     <Grid item xs={12} lg={6} >
@@ -105,14 +101,8 @@ const CharacterPage = () => {
                                         </Stack>
                                     </Grid>
                                 </Grid>
-                        }
 
-                        <Divider />
-                        {
-                            isLoadingDetails ?
-                                <Skeleton height={150} />
-                                :
-                                <Grid container spacing={2} paddingBottom={2}  >
+                                <Grid container spacing={2} paddingBottom={2}>
 
                                     <Grid item xs={12}  >
                                         <TextWithLabel label="portrayed" >
@@ -125,27 +115,25 @@ const CharacterPage = () => {
                                             <Typography fontWeight="bold" >{t('appearance')}:</Typography>
                                             <Grid container spacing={2}>
                                                 {
-                                                    isLoadingDetails ?
-                                                        <Skeleton />
-                                                        :
-                                                        character?.appearance?.map((season) => (
-                                                            <Grid key={season} item >
-                                                                <Button disableElevation variant="contained" sx={{ fontWeight: 'bold' }} >{season}</Button>
-                                                            </Grid>
-                                                        ))
+                                                    character?.appearance?.map((season) => (
+                                                        <Grid key={season} item >
+                                                            <Button disableElevation variant="contained" sx={{ fontWeight: 'bold' }} >{season}</Button>
+                                                        </Grid>
+                                                    ))
                                                 }
                                             </Grid>
                                         </Stack>
                                     </Grid>
-
                                 </Grid>
-                        }
 
-                        <Quote characterName={character?.name} />
+                                <Quote characterName={character?.name} />
 
-                    </Stack>
+                            </Stack>
+                        </Placeholder>
+                    </Grid>
+
                 </Grid>
-            </Grid>
+            </Stack>
         </Paper>
     );
 }

@@ -17,7 +17,7 @@ const LandingPage = () => {
     return (
         <Grid container spacing={2} >
             {
-                isLoadingCharacters ?
+                (isLoadingCharacters && characters?.length === 0) ?
                     <Grid item xs={12} sx={{
                         bgcolor: 'rgba(15,23,42, 0.5)',
                         width: '100%',

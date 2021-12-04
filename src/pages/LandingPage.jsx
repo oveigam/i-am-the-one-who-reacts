@@ -24,6 +24,7 @@ const LandingPage = () => {
                     src="/images/title.png"
                     width="100%"
                     draggable={false}
+                    alt="title"
                 />
             </Box>
 

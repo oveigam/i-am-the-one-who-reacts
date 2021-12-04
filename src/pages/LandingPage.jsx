@@ -18,6 +18,15 @@ const LandingPage = () => {
 
     return (
         <Stack flex={1} >
+
+            <Box paddingY={2}>
+                <img
+                    src="/images/title.png"
+                    width="100%"
+                    draggable={false}
+                />
+            </Box>
+
             <Box marginBottom={2} width={{ xs: '100%', md: '80%', lg: '60%' }} >
                 <CharacterSearchBar />
             </Box>
@@ -28,7 +37,7 @@ const LandingPage = () => {
                     <CharacterList />
             }
         </Stack>
-    );
+    )
 }
 
 export default LandingPage;

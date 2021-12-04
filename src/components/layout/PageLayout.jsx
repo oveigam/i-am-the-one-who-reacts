@@ -15,7 +15,7 @@ const PageLayout = ({ children }) => {
         }} >
             <Box sx={{
                 minHeight: '100vh',
-                backgroundImage: { lg: `url(${window.location.origin}/images/walter.png)` },
+                backgroundImage: `url(${window.location.origin}/images/walter.png)`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'left bottom',
                 backgroundAttachment: 'fixed',

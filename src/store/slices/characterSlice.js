@@ -1,20 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setError } from "./errorSlice";
 
 export const fetchCharacterDetail = createAsyncThunk(
     'character/fetchCharacterDetail',
     async (characterId, { dispatch }) => {
-        const { data } = await axios.get(`/characters/${characterId}`)
-        dispatch(fetchRandomQuote(data[0].name))
-        return data[0]
+        try {
+            const { data } = await axios.get(`/characters/${characterId}`)
+            dispatch(fetchRandomQuote(data[0].name))
+            return data[0]
+        } catch (error) {
+            dispatch(setError('apiErrors.fetchCharacterDetail'))
+            throw error
+        }
     }
 )
 
 export const fetchRandomQuote = createAsyncThunk(
     'character/fetchRandomQuote',
     async (characterName) => {
-        const { data } = await axios.get('quote/random', { params: { author: characterName } })
-        return data.length > 0 ? data[0].quote : ''
+        try {
+            const { data } = await axios.get('quote/random', { params: { author: characterName } })
+            return data.length > 0 ? data[0].quote : ''
+        } catch (error) {
+            throw error
+        }
     }
 )
 
@@ -28,6 +38,9 @@ const characterSlice = createSlice({
         clearCharacterDetail: (state) => {
             state.detail = null
             state.quote = ''
+        },
+        clearQuoteError: (state) => {
+            state.quoteError = null
         }
     },
     extraReducers: {
@@ -39,11 +52,11 @@ const characterSlice = createSlice({
             state.isLoadingDetails = false
         },
         [fetchCharacterDetail.rejected]: (state) => {
-            state.error = 'apiErrors.fetchCharacterDetail'
             state.isLoadingDetails = false
         },
 
         [fetchRandomQuote.pending]: (state) => {
+            state.quoteError = null
             state.isLoadingQuote = true
         },
         [fetchRandomQuote.fulfilled]: (state, { payload: quote }) => {
@@ -51,12 +64,12 @@ const characterSlice = createSlice({
             state.isLoadingQuote = false
         },
         [fetchRandomQuote.rejected]: (state) => {
-            state.error = 'apiErrors.quote'
+            state.quoteError = 'apiErrors.quote'
             state.isLoadingQuote = false
         }
     }
 })
 
-export const { clearCharacterDetail } = characterSlice.actions
+export const { clearCharacterDetail, clearQuoteError } = characterSlice.actions
 
 export const characterReducer = characterSlice.reducer

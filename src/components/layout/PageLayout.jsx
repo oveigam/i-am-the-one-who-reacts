@@ -1,4 +1,5 @@
 import { Box, Container } from "@mui/material";
+import ErrorAware from "./ErrorAware";
 import Header from './Header';
 
 const PageLayout = ({ children }) => {
@@ -25,7 +26,9 @@ const PageLayout = ({ children }) => {
             }} >
                 <Header />
                 <Container sx={{ paddingY: 1.5, flex: 1, display: 'flex' }}>
-                    {children}
+                    <ErrorAware>
+                        {children}
+                    </ErrorAware>
                 </Container>
             </Box>
         </Box>

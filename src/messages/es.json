@@ -8,7 +8,11 @@
     "backtocharacters": "Volver a personajes",
     "refreshquote": "Actualizar frase",
     "search": "Buscar",
-    "errors": {
+    "error": "Error",
+    "retry": "Reintentar",
+    "wentwrong": "Something went wrong...",
+    "reload": "Recargar",
+    "apiErrors": {
         "fetchAllCharacters": "Error recuperando la lista de personajes",
         "fetchCharacterDetail": "Error recuperando los detalles del personaje",
         "quote": "Error recuperando frases del personaje"

@@ -1,12 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import characterSearch from './../../util/characterSearch';
+import { setError } from "./errorSlice";
 
 export const fetchAllCharacters = createAsyncThunk(
     'characterList/fetchAllCharacters',
-    async () => {
-        const { data } = await axios.get('characters', { params: { category: 'Breaking Bad' } })
-        return data
+    async (payload, { dispatch }) => {
+        try {
+            const { data } = await axios.get('characters', { params: { category: 'Breaking Bad' } })
+            return data
+        } catch (error) {
+            dispatch(setError('apiErrors.fetchAllCharacters'))
+            throw error
+        }
     }
 )
 
@@ -38,7 +44,6 @@ const characterListSlice = createSlice({
             state.isLoadingCharacters = false
         },
         [fetchAllCharacters.rejected]: (state) => {
-            state.error = 'apiErrors.fetchAllCharacters'
             state.isLoadingCharacters = false
         },
     }

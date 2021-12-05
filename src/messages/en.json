@@ -8,7 +8,11 @@
     "backtocharacters": "Back to characters",
     "refreshquote": "Refresh quote",
     "search": "Search",
-    "errors": {
+    "error": "Error",
+    "retry": "retry",
+    "wentwrong": "Something went wrong...",
+    "reload": "Reload",
+    "apiErrors": {
         "fetchAllCharacters": "There was an error fetching the list of characters",
         "fetchCharacterDetail": "There was an error fetching the character details",
         "quote": "There was an error fetching quotes from the character"

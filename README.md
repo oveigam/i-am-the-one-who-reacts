@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# I Am The One Who Reacts
+Aplicación que muestra información sobre los personajes de Breaking Bad.
+Consta de dos pantallas.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Lista de personajes: carga la lista de todos los personajes. Se puede buscar por nombre (o nickname). Al pulsar en alguno de los peronajes se avanza a la segunda pantalla de detalle de personaje.
+2. Detalle de personaje: muestra la info del personaje. Se mostrará (si tiene) una cita aleatoria del personaje. Se puede refrescar esta cita dandole al botón de refrescar.
 
-## Available Scripts
+# Instalación
+Instalar las dependencias
+```sh
+npm install
+```
+Iniciar la aplicación en modo desarrollo, abrir http://localhost:3000 para ver en el navegador
+```sh
+npm start
+```
+Iniciar tests
+```sh
+npm test
+```
+Compilar para produccion. Los resultados estarán en la carpeta "build"
+```sh
+npm build
+```
 
-In the project directory, you can run:
+# Aspectos técnicos
+# React
+Para la creación del proyecto se ha usado [create-react-app](https://create-react-app.dev/) con la versión actual de React 17.0.2.
 
-### `yarn start`
+# Librería de componentes
+Para agilizar el desarrollo se ha decidido utilizar la librería [Meterial UI](https://mui.com/) principalmente por su facilidad de uso (especialmente para el diseño responsivo) y es una librería con la que ya estoy familiarizado.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Routing
+Para la navegación entre rutas se utiliza [react-router](https://reactrouter.com/) ya que es la solución más típica y con la que tengo experiencia.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Internacionalización
+Para la internacionalización de textos (inflés y español) he utilizado [react-i18next](https://react.i18next.com/) que ya me proporciona todos los compoenntes, hooks, etc. que necesito para mostrar los textos internacionalizados con una configuración mínima.
 
-### `yarn test`
+# Estado global
+Para gestionar el estado global de la aplicación he decidido usar dos estrategias, ya que se mencionan en el enunciado, Context para gestionar el dark mode y Redux para los datos recuperados de la api.
+La elección de ambas es principalmente por familiaridad, son las más comunes y que se mencionan directamente en el enunciado.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Context
+Para gestionar el tipo de tema que ustiliza el usuario utilizo el propio Context incluido en React.
+Este context almacenará un boolean (isDarkMode) que identifica si usar el tema oscuro o no.
+En el provider gestiono la lógica necesaria para persistir el valor en localStorage (y que se mantenga la configuración entre sesiones) y además incluyo el propio ThemeProvider the Material UI que sera el que se encargará de ajustar el tema acorde a lo seleccionado.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Redux 
+Para gestionar el estado global de los datos del servidor he usado redux ayudandome de [redux-toolkit](https://redux-toolkit.js.org/) que me permite simplificar la creación de los reducers y acciones sin tener que escribir todo el boilerplate típico de redux. Además, a día de hoy, es la manera recomendada por el equipo de redux para utilizar redux.
+Para los side effects react toolkit ya utiliza thunk por defecto.

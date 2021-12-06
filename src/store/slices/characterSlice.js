@@ -10,6 +10,7 @@ export const fetchCharacterDetail = createAsyncThunk(
             dispatch(fetchRandomQuote(data[0].name))
             return data[0]
         } catch (error) {
+            // Si hay un error lo mandamos al reducer de errores ya que no lo vamos a tratar de manera especial
             dispatch(setError('apiErrors.fetchCharacterDetail'))
             throw error
         }
@@ -19,15 +20,14 @@ export const fetchCharacterDetail = createAsyncThunk(
 export const fetchRandomQuote = createAsyncThunk(
     'character/fetchRandomQuote',
     async (characterName) => {
-        try {
-            const { data } = await axios.get('quote/random', { params: { author: characterName } })
-            return data.length > 0 ? data[0].quote : ''
-        } catch (error) {
-            throw error
-        }
+        const { data } = await axios.get('quote/random', { params: { author: characterName } })
+        return data.length > 0 ? data[0].quote : ''
     }
 )
 
+/**
+ * Se encarga de gestionar la info de la pantalla de detalle de personaje
+ */
 const characterSlice = createSlice({
     name: 'character',
     initialState: {
@@ -64,6 +64,8 @@ const characterSlice = createSlice({
             state.isLoadingQuote = false
         },
         [fetchRandomQuote.rejected]: (state) => {
+            // Los errores recuperando la quote los gestionamos de manera especial sin pasar por el reducer de error general
+            // ya que si falla simplemente queremos mostrar un aviso y no mostrar la frase en vez de no mostrar nada
             state.quoteError = 'apiErrors.quote'
             state.isLoadingQuote = false
         }

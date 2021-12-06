@@ -10,12 +10,16 @@ export const fetchAllCharacters = createAsyncThunk(
             const { data } = await axios.get('characters', { params: { category: 'Breaking Bad' } })
             return data
         } catch (error) {
+            // Si hay un error lo mandamos al reducer de errores ya que no lo vamos a tratar de manera especial
             dispatch(setError('apiErrors.fetchAllCharacters'))
             throw error
         }
     }
 )
 
+/**
+ * Se encarga de la pantalla con la lista de personajes y de la busqueda de personajes
+ */
 const characterListSlice = createSlice({
     name: 'characterList',
     initialState: {
